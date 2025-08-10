@@ -1,4 +1,3 @@
-
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -20,7 +19,6 @@ import messageRoutes from './routes/messages.js';
 
 // MODELS (capitalized)
 import Message from './models/Message.js';
-import Match from './models/Match.js';
 import Confession from './models/Confession.js';
 import Badge from './models/Badge.js';
 
@@ -79,3 +77,4 @@ mongoose.connect(URI)
     console.error('Mongo connection error:', e.message);
     process.exit(1);
   });
+
