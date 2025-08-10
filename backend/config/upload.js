@@ -1,19 +1,12 @@
+// backend/config/upload.js — handles file uploads with multer
 
-import multer from 'multer';
-import path from 'path';
+import multer from 'multer'; import path from 'path'; import { fileURLToPath } from 'url'; import fs from 'fs';
 
-const storage = multer.diskStorage({
-  destination: (_, __, cb) => cb(null, 'uploads/'),
-  filename: (_, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
+const __filename = fileURLToPath(import.meta.url); const __dirname = path.dirname(__filename);
 
-const upload = multer({
-  storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
-  fileFilter: (_, file, cb) => {
-    const ok = /jpeg|jpg|png|gif/.test(path.extname(file.originalname).toLowerCase());
-    cb(ok ? null : new Error('Only images allowed'), ok);
-  }
-});
+// Ensure uploads folder exists const uploadsDir = path.join(__dirname, '..', 'uploads'); if (!fs.existsSync(uploadsDir)) { fs.mkdirSync(uploadsDir); }
 
-export default upload;
+const storage = multer.diskStorage({ destination: function (req, file, cb) { cb(null, uploadsDir); }, filename: function (req, file, cb) { cb(null, Date.now() + '-' + file.originalname); } });
+
+const upload = multer({ storage }); export default upload;
+
