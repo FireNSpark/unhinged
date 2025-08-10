@@ -1,12 +1,15 @@
-// backend/config/upload.js — handles file uploads with multer
+// backend/config/upload.js — Multer setup
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
 
-import multer from 'multer'; import path from 'path'; import { fileURLToPath } from 'url'; import fs from 'fs';
+const uploadsPath = path.join(process.cwd(), 'backend', 'uploads');
+if (!fs.existsSync(uploadsPath)) fs.mkdirSync(uploadsPath, { recursive: true });
 
-const __filename = fileURLToPath(import.meta.url); const __dirname = path.dirname(__filename);
+const storage = multer.diskStorage({
+  destination: (_req, _file, cb) => cb(null, uploadsPath),
+  filename: (_req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+});
 
-// Ensure uploads folder exists const uploadsDir = path.join(__dirname, '..', 'uploads'); if (!fs.existsSync(uploadsDir)) { fs.mkdirSync(uploadsDir); }
-
-const storage = multer.diskStorage({ destination: function (req, file, cb) { cb(null, uploadsDir); }, filename: function (req, file, cb) { cb(null, Date.now() + '-' + file.originalname); } });
-
-const upload = multer({ storage }); export default upload;
-
+const upload = multer({ storage });
+export default upload;
