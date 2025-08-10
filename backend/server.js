@@ -1,3 +1,4 @@
+
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -9,15 +10,15 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import rateLimit from 'express-rate-limit';
 
-// ROUTES (plural lowercase)
-import authRoutes from './routes/auths.js';
-import profileRoutes from './routes/profiles.js';
+// ROUTES
+import authRoutes from './routes/auth.js';
+import profileRoutes from './routes/profile.js';
 import matchRoutes from './routes/matches.js';
 import confessionRoutes from './routes/confessions.js';
 import badgeRoutes from './routes/badges.js';
 import messageRoutes from './routes/messages.js';
 
-// MODELS (singular, capitalized)
+// MODELS (capitalized)
 import Message from './models/Message.js';
 import Match from './models/Match.js';
 import Confession from './models/Confession.js';
@@ -48,8 +49,8 @@ app.use(
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
-app.use('/auths', authRoutes);
-app.use('/profiles', profileRoutes);
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 app.use('/matches', matchRoutes);
 app.use('/confessions', confessionRoutes);
 app.use('/badges', badgeRoutes);
@@ -71,11 +72,10 @@ const URI = process.env.MONGO_URI;
 mongoose.connect(URI)
   .then(() => {
     httpServer.listen(PORT, () => {
-      console.log(`Unhinged API running on :${PORT}`);
+      console.log('Unhinged API running on :' + PORT);
     });
   })
   .catch((e) => {
     console.error('Mongo connection error:', e.message);
     process.exit(1);
   });
-
