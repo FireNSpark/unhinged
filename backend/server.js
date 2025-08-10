@@ -63,14 +63,17 @@ io.on('connection', (socket) => {
 const PORT = process.env.PORT || 5000;
 const URI = process.env.MONGO_URI;
 
+// Start server first so /health works even if Mongo is down
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log('UNHINGED UP on :' + PORT);
+});
+
+// Connect to Mongo in the background (do not crash app on failure)
 mongoose.connect(URI)
   .then(() => {
-    httpServer.listen(PORT, '0.0.0.0', () => {
-      console.log('UNHINGED UP on :' + PORT);
-    });
+    console.log('MongoDB connected');
   })
   .catch((e) => {
     console.error('Mongo connection error:', e.message);
-    process.exit(1);
   });
 
