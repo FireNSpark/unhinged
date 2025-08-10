@@ -1,19 +1,25 @@
-// server.js — minimal ESM version (works on Render)
 import express from 'express';
 import cors from 'cors';
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// Root + health
-app.get('/', (_req, res) => res.json({ message: 'Unhinged backend is running' }));
-app.get('/health', (_req, res) => res.json({ ok: true }));
+// Example root route
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
 
-// Simple test route
-app.get('/users', (_req, res) => res.json({ message: 'Users route working' }));
+// Import routes
+import authRoutes from './routes/auth.js';
+import usersRoutes from './routes/users.js';
 
+app.use('/auth', authRoutes);
+app.use('/users', usersRoutes);
+
+// Server listen
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log('Unhinged minimal server on :' + PORT);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
