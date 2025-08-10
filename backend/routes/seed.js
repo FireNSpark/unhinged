@@ -1,9 +1,8 @@
 import express from 'express';
 import User from '../models/User.js';
-
 const router = express.Router();
 
-// POST /seed — creates 2 users and returns them
+// POST /seed — creates 2 users
 router.post('/', async (_req, res) => {
   try {
     await User.deleteMany({ email: { $in: ['a@test.com', 'b@test.com'] } });
