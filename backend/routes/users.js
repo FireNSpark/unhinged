@@ -1,9 +1,16 @@
-// src/backend/routes/users.js
-import express from 'express';
-const router = express.Router();
+import mongoose from 'mongoose';
 
-router.get('/', (req, res) => {
-  res.json({ message: 'Users route working' });
-});
+const UserSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true, unique: true, lowercase: true },
+    password: { type: String, required: true },
+    name: { type: String, default: '' },
+    age: { type: Number, min: 18 },
+    bio: { type: String, default: '' },
+    redFlags: { type: [String], default: [] },
+    createdAt: { type: Date, default: Date.now }
+  },
+  { timestamps: true }
+);
 
-export default router;
+export default mongoose.model('User', UserSchema);
