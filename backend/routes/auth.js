@@ -1,10 +1,8 @@
-// backend/routes/auth.js import express from 'express';
 
+import express from 'express';
 const router = express.Router();
 
-// Example login route router.post('/login', (req, res) => { res.json({ message: 'Login route working' }); });
-
-// Example register route router.post('/register', (req, res) => { res.json({ message: 'Register route working' }); });
+router.get('/', (_req, res) => res.json({ ok: true, route: 'users' }));
+router.get('/:id', (req, res) => res.json({ ok: true, id: req.params.id }));
 
 export default router;
-
