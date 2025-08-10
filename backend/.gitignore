@@ -1,3 +1,4 @@
-node_modules/
-uploads/
-.env
+backend/.gitignore
+
+node_modules/ .env uploads/
+
