@@ -1,37 +1,20 @@
-// server.js — ensure proper default imports for all routes
+// server.js — fixed import for users.js
 import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-// Import routes with default exports
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/users.js';
-import matchRoutes from './routes/matches.js';
+import usersRoutes from './routes/users.js';
 
 const app = express();
 
-dotenv.config();
-
-app.use(cors());
 app.use(express.json());
+app.use('/users', usersRoutes);
 
-// Route middleware
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/matches', matchRoutes);
-
-// Health check route
+// Example root route
 app.get('/', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  res.json({ message: 'Server is running' });
 });
 
 const PORT = process.env.PORT || 10000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((err) => console.error(err));
 
