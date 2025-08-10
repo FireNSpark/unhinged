@@ -22,5 +22,5 @@ const app = express(); const httpServer = createServer(app); const io = new Serv
 
 const PORT = process.env.PORT || 5000; const URI = process.env.MONGO_URI; // must include DB name
 
-mongoose .connect(URI) .then(() => { httpServer.listen(PORT, () => { console.log(🚀 Server running on port ${PORT}); }); }) .catch((e) => { console.error('Mongo connection error:', e.message); process.exit(1); });
+mongoose .connect(URI) .then(() => { httpServer.listen(PORT, () => { console.log(Unhinged API running on :${PORT}); }); }); }) .catch((e) => { console.error('Mongo connection error:', e.message); process.exit(1); });
 
