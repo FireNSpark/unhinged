@@ -1,8 +1,10 @@
-// backend/routes/users.js — default export import express from 'express'; const router = express.Router();
+// backend/routes/auth.js import express from 'express';
 
-// GET /users → sanity endpoint router.get('/', (_req, res) => { res.json({ ok: true, route: 'users' }); });
+const router = express.Router();
 
-// (placeholder) GET /users/:id → echo id for now router.get('/:id', (req, res) => { res.json({ ok: true, id: req.params.id }); });
+// Example login route router.post('/login', (req, res) => { res.json({ message: 'Login route working' }); });
+
+// Example register route router.post('/register', (req, res) => { res.json({ message: 'Register route working' }); });
 
 export default router;
 
