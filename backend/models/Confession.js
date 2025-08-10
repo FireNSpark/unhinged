@@ -1,12 +1,9 @@
-// models/Confession.js
 import mongoose from 'mongoose';
 
-const confessionSchema = new mongoose.Schema({
+const ConfessionSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  text: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
-});
+  text: { type: String, required: true, trim: true },
+  isAnonymous: { type: Boolean, default: false }
+}, { timestamps: true });
 
-const Confession = mongoose.model('Confession', confessionSchema);
-
-export default Confession;
+export default mongoose.model('Confession', ConfessionSchema);
