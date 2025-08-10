@@ -1,16 +1,15 @@
-// routes/matches.js
+// backend/routes/matches.js — default export (placeholder)
 import express from 'express';
-
 const router = express.Router();
 
-// Get all matches (placeholder)
-router.get('/', (req, res) => {
-  res.json({ message: 'Get all matches - working' });
+// GET /matches → sanity endpoint
+router.get('/', (_req, res) => {
+  res.json({ ok: true, route: 'matches' });
 });
 
-// Create a new match (placeholder)
+// (placeholder) POST /matches → echo body
 router.post('/', (req, res) => {
-  res.json({ message: 'New match created' });
+  res.json({ ok: true, received: req.body || {} });
 });
 
 export default router;
