@@ -7,8 +7,7 @@ const UserSchema = new mongoose.Schema(
     name: { type: String, default: '' },
     age: { type: Number, min: 18 },
     bio: { type: String, default: '' },
-    redFlags: { type: [String], default: [] },
-    createdAt: { type: Date, default: Date.now }
+    redFlags: { type: [String], default: [] }
   },
   { timestamps: true }
 );
