@@ -1,4 +1,4 @@
-// server.js — FINAL (no Match import anywhere). BUILD v5
+// server.js — FINAL (no Match import anywhere). BUILD v6
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -24,7 +24,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: { origin: '*' } });
 
-console.log('UNHINGED SERVER BUILD v5');
+console.log('UNHINGED SERVER BUILD v6');
 
 // ensure uploads/ exists
 const __filename = fileURLToPath(import.meta.url);
