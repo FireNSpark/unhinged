@@ -1,9 +1,7 @@
-// src/backend/routes/users.js
 import express from 'express';
-
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
   res.json({ message: 'Users route working' });
 });
 
