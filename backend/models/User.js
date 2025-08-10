@@ -1,19 +1,16 @@
-
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true, index: true },
+    email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true },
-    redFlags: [String],
-    greenFlags: [String],
-    aboutMe: String,
-    photos: [String],
-    quizResult: String,
-    badges: [String]
+    name: { type: String, default: '' },
+    age: { type: Number, min: 18 },
+    bio: { type: String, default: '' },
+    redFlags: { type: [String], default: [] },
+    createdAt: { type: Date, default: Date.now }
   },
   { timestamps: true }
 );
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model('User', UserSchema);
