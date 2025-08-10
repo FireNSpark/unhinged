@@ -1,31 +1,37 @@
-
+// backend/routes/messages.js — aligned with Message model (senderId/receiverId)
 import express from 'express';
 import Message from '../models/Message.js';
+
 const router = express.Router();
 
-// GET /messages/:userA/:userB → convo
+// GET /messages/:userA/:userB → convo between two users
 router.get('/:userA/:userB', async (req, res) => {
   try {
     const { userA, userB } = req.params;
     const msgs = await Message.find({
       $or: [
-        { sender: userA, receiver: userB },
-        { sender: userB, receiver: userA }
-      ]
-    }).sort({ createdAt: 1 });
+        { senderId: userA, receiverId: userB },
+        { senderId: userB, receiverId: userA },
+      ],
+    }).sort({ timestamp: 1 });
     res.json(msgs);
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
-// POST /messages → { sender, receiver, content }
+// POST /messages → { senderId, receiverId, content }
 router.post('/', async (req, res) => {
   try {
-    const { sender, receiver, content } = req.body || {};
-    if (!sender || !receiver || !content)
-      return res.status(400).json({ error: 'sender, receiver, content are required' });
-    const msg = await Message.create({ sender, receiver, content });
+    const { senderId, receiverId, content } = req.body || {};
+    if (!senderId || !receiverId || !content) {
+      return res.status(400).json({ error: 'senderId, receiverId, content are required' });
+    }
+    const msg = await Message.create({ senderId, receiverId, content });
     res.status(201).json(msg);
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
-export default router;
+export default router
