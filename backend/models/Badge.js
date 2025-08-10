@@ -1,10 +1,12 @@
-
+// models/Badge.js
 import mongoose from 'mongoose';
 
 const badgeSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  description: String,
-  icon: String
+  name: { type: String, required: true },
+  description: { type: String },
+  icon: { type: String }, // URL or path to badge icon
+  createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.model('Badge', badgeSchema);
+const Badge = mongoose.model('Badge', badgeSchema);
+export default Badge;
