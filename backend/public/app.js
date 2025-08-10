@@ -1,10 +1,8 @@
-
-// Tiny client talking to your backend on the same origin
 const $ = (s) => document.querySelector(s);
 const out = $('#out');
 const usersList = $('#users');
 let users = [];
-let A = null, B = null; // selected user ids
+let A = null, B = null;
 
 function log(x){ out.textContent = (typeof x === 'string') ? x : JSON.stringify(x, null, 2); }
 
@@ -15,14 +13,12 @@ async function req(path, opts){
   catch { return { ok: res.ok, data: text }; }
 }
 
-// Seed two demo users
 $('#btn-seed').onclick = async () => {
   const r = await req('/seed', { method: 'POST' });
   log(r.data);
   await loadUsers();
 };
 
-// Load users (expects your /users to return an array or {users:[...]})
 async function loadUsers(){
   const r = await req('/users');
   const data = r.data;
@@ -42,7 +38,6 @@ async function loadUsers(){
 }
 $('#btn-users').onclick = loadUsers;
 
-// Track two selected users
 usersList.addEventListener('change', () => {
   const ids = [...usersList.querySelectorAll('input[type=checkbox]:checked')].map(x => x.dataset.id);
   A = ids[0] || null; B = ids[1] || null;
@@ -51,14 +46,12 @@ usersList.addEventListener('change', () => {
   $('#btn-thread').disabled = !(A && B);
 });
 
-// Matches for A
 $('#btn-matches').onclick = async () => {
   if (!A) return;
   const r = await req(`/matches/${A}`);
   log(r.data);
 };
 
-// Send a message between A and B
 $('#btn-send').onclick = async () => {
   if (!(A && B)) return;
   const content = prompt('Message text?', 'hey');
@@ -71,12 +64,10 @@ $('#btn-send').onclick = async () => {
   log(r.data);
 };
 
-// View thread
 $('#btn-thread').onclick = async () => {
   if (!(A && B)) return;
   const r = await req(`/messages/${A}/${B}`);
   log(r.data);
 };
 
-// Auto-load on first visit
 loadUsers().catch(() => {});
