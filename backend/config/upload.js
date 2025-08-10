@@ -1,4 +1,3 @@
-// backend/config/upload.js — Multer setup
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
@@ -11,5 +10,4 @@ const storage = multer.diskStorage({
   filename: (_req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
 
-const upload = multer({ storage });
-export default upload;
+export default multer({ storage });
