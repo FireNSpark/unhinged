@@ -1,39 +1,16 @@
+// ROUTES — filenames & corrected imports/exports (copy these names exactly) // Place these files under: backend/routes/
 
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+// 1) backend/routes/auth.js import express from 'express'; import bcrypt from 'bcryptjs'; import jwt from 'jsonwebtoken'; import User from '../models/User.js'; const router = express.Router(); // ... endpoints here ... export default router;
 
-const router = express.Router();
+// 2) backend/routes/profile.js import express from 'express'; import jwt from 'jsonwebtoken'; import User from '../models/User.js'; import upload from '../config/upload.js'; const router = express.Router(); // ... endpoints here ... export default router;
 
-// POST /auth/register
-router.post('/register', async (req, res) => {
-  try {
-    const { name, email, password } = req.body || {};
-    if (!name || !email || !password) return res.status(400).json({ error: 'Missing fields' });
-    const exists = await User.findOne({ email });
-    if (exists) return res.status(400).json({ error: 'Email already in use' });
-    const hashed = await bcrypt.hash(password, 10);
-    await new User({ name, email, password: hashed }).save();
-    res.json({ message: 'Registered' });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
+// 3) backend/routes/matches.js import express from 'express'; import jwt from 'jsonwebtoken'; import User from '../models/User.js'; import { calculateCompatibility } from '../utils/compatibility.js'; const router = express.Router(); // ... endpoints here ... export default router;
 
-// POST /auth/login
-router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body || {};
-    const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ error: 'Not found' });
-    const ok = await bcrypt.compare(password, user.password);
-    if (!ok) return res.status(400).json({ error: 'Invalid credentials' });
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-    res.json({ token });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
+// 4) backend/routes/confessions.js import express from 'express'; import jwt from 'jsonwebtoken'; import Confession from '../models/Confession.js'; const router = express.Router(); // ... endpoints here ... export default router;
 
-export default router;
+// 5) backend/routes/badges.js import express from 'express'; import jwt from 'jsonwebtoken'; import Badge from '../models/Badge.js'; import User from '../models/User.js'; const router = express.Router(); // ... endpoints here ... export default router;
+
+// 6) backend/routes/messages.js import express from 'express'; import Message from '../models/Message.js'; const router = express.Router(); // ... endpoints here ... export default router;
+
+// === server.js import block (copy/paste) === // Keep routes all lowercase file names exactly like this // (these must match the actual filenames under backend/routes) import authRoutes from './routes/auth.js'; import profileRoutes from './routes/profile.js'; import matchRoutes from './routes/matches.js'; import confessionRoutes from './routes/confessions.js'; import badgeRoutes from './routes/badges.js'; import messageRoutes from './routes/messages.js';
+
