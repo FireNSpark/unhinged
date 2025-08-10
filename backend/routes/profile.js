@@ -1,8 +1,11 @@
+
 import express from 'express';
 import upload from '../config/upload.js';
 import User from '../models/User.js';
+
 const router = express.Router();
 
+// POST /profile/upload  (form-data: userId, profilePic)
 router.post('/upload', upload.single('profilePic'), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
@@ -17,6 +20,7 @@ router.post('/upload', upload.single('profilePic'), async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// PUT /profile/:id
 router.put('/:id', async (req, res) => {
   try {
     const allow = (({ username, age, gender, interests }) => ({ username, age, gender, interests }))(req.body || {});
