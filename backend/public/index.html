@@ -1,4 +1,5 @@
-doctype html>
+
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -26,10 +27,11 @@ doctype html>
 
     <section>
       <h2>Output</h2>
-      <pre id="out">Ready.</pre>
+      <pre id="out">Booting…</pre>
     </section>
   </main>
 
-  <script src="/app.js"></script>
+  <!-- DEFER so the DOM exists before app.js runs -->
+  <script defer src="/app.js"></script>
 </body>
-</html
+</html>
