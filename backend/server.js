@@ -1,29 +1,10 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
+// server.js — ultra‑minimal boot so we can rebuild clean import express from 'express'; import cors from 'cors';
 
-// routes
-import usersRoutes from './routes/users.js';
-import authRoutes from './routes/auth.js';
-import matchesRoutes from './routes/matches.js';
-import seedRoutes from './routes/seed.js';
+const app = express(); app.use(cors()); app.use(express.json());
 
-dotenv.config();
-const app = express();
+// Root + health app.get('/', (_req, res) => res.json({ message: 'Unhinged backend is running' })); app.get('/health', (_req, res) => res.json({ ok: true }));
 
-app.use(cors());
-app.use(express.json());
+// Inline users route (no separate file needed) app.get('/users', (_req, res) => res.json({ message: 'Users route working' }));
 
-app.get('/health', (_req, res) => res.json({ ok: true }));
+// Start (Render needs 0.0.0.0) const PORT = process.env.PORT || 5000; app.listen(PORT, '0.0.0.0', () => { console.log('Unhinged minimal server on :' + PORT); });
 
-app.use('/users', usersRoutes);
-app.use('/auth', authRoutes);
-app.use('/matches', matchesRoutes);
-app.use('/seed', seedRoutes);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0', () => console.log('Unhinged up on :' + PORT));
-
-const URI = process.env.MONGO_URI;
-mongoose.connect(URI).then(() => console.log('Mongo connected')).catch(e => console.error('Mongo error:', e.message));
