@@ -1,3 +1,4 @@
+
 const $ = (s) => document.querySelector(s);
 const out = $('#out');
 const usersList = $('#users');
@@ -6,6 +7,12 @@ let A = null, B = null;
 
 function log(x){ out.textContent = (typeof x === 'string') ? x : JSON.stringify(x, null, 2); }
 
+// Surface any JS error in the Output panel so you can see it on mobile
+window.onerror = (msg, src, line, col, err) => {
+  log({ frontendError: String(msg), src, line, col, stack: err && err.stack });
+};
+
+// small fetch helper
 async function req(path, opts){
   const res = await fetch(path, opts);
   const text = await res.text();
@@ -13,11 +20,14 @@ async function req(path, opts){
   catch { return { ok: res.ok, data: text }; }
 }
 
+// Buttons
 $('#btn-seed').onclick = async () => {
   const r = await req('/seed', { method: 'POST' });
   log(r.data);
   await loadUsers();
 };
+
+$('#btn-users').onclick = loadUsers;
 
 async function loadUsers(){
   const r = await req('/users');
@@ -26,17 +36,11 @@ async function loadUsers(){
   usersList.innerHTML = '';
   users.forEach(u => {
     const li = document.createElement('li');
-    li.innerHTML = `
-      <label>
-        <input type="checkbox" data-id="${u._id}"/>
-        ${u.username || u.name || u.email}
-        <small>${u._id}</small>
-      </label>`;
+    li.innerHTML = `<label><input type="checkbox" data-id="${u._id}"/> ${u.username || u.name || u.email} <small>${u._id}</small></label>`;
     usersList.appendChild(li);
   });
   $('#btn-matches').disabled = users.length === 0;
 }
-$('#btn-users').onclick = loadUsers;
 
 usersList.addEventListener('change', () => {
   const ids = [...usersList.querySelectorAll('input[type=checkbox]:checked')].map(x => x.dataset.id);
@@ -70,4 +74,5 @@ $('#btn-thread').onclick = async () => {
   log(r.data);
 };
 
-loadUsers().catch(() => {});
+// boot
+log('Ready.');
