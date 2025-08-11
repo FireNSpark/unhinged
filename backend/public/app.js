@@ -1,28 +1,68 @@
-// backend/routes/users.js — GET /users returns an array
-import express from 'express';
-import User from '../models/User.js';
+// backend/public/app.js
 
-const router = express.Router();
+document.addEventListener('DOMContentLoaded', () => {
+  const seedBtn = document.getElementById('seedBtn');
+  const loadBtn = document.getElementById('loadBtn');
+  const matchBtn = document.getElementById('matchBtn');
+  const messageBtn = document.getElementById('messageBtn');
 
-// GET /users → list users (array)
-router.get('/', async (_req, res) => {
-  try {
-    const users = await User.find().select('-password').sort({ createdAt: -1 }).limit(200);
-    res.json(users); // <-- array, not { ok: true }
-  } catch (e) {
-    res.status(500).json({ error: e.message });
+  // POST /seed
+  if (seedBtn) {
+    seedBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/seed', { method: 'POST' });
+        const data = await res.json();
+        console.log('Seed response:', data);
+        alert(data.success ? 'Seeded demo users!' : 'Seeding failed');
+      } catch (err) {
+        console.error('Seed error:', err);
+        alert('Error seeding users');
+      }
+    });
+  }
+
+  // GET /users
+  if (loadBtn) {
+    loadBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/users');
+        const data = await res.json();
+        console.log('Users:', data);
+        alert(`Loaded ${data.length} users`);
+      } catch (err) {
+        console.error('Load users error:', err);
+        alert('Error loading users');
+      }
+    });
+  }
+
+  // POST /matches
+  if (matchBtn) {
+    matchBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/matches', { method: 'POST' });
+        const data = await res.json();
+        console.log('Match response:', data);
+        alert(data.success ? 'Match created!' : 'Match failed');
+      } catch (err) {
+        console.error('Match error:', err);
+        alert('Error creating match');
+      }
+    });
+  }
+
+  // POST /messages
+  if (messageBtn) {
+    messageBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/messages', { method: 'POST' });
+        const data = await res.json();
+        console.log('Message response:', data);
+        alert(data.success ? 'Message sent!' : 'Message failed');
+      } catch (err) {
+        console.error('Message error:', err);
+        alert('Error sending message');
+      }
+    });
   }
 });
-
-// GET /users/:id → one user
-router.get('/:id', async (req, res) => {
-  try {
-    const u = await User.findById(req.params.id).select('-password');
-    if (!u) return res.status(404).json({ error: 'User not found' });
-    res.json(u);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-export default router;
