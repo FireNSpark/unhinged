@@ -1,211 +1,215 @@
 <!doctype html>
-
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Unhinged · Dating</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      /* Brand */
-      --red:#E2262A;        /* primary red */
-      --red-dark:#B11C1F;   /* darker red */
-      --yellow:#FFD60A;     /* accent */
-      --ink:#0C0C0F;        /* page bg */
-      --ink-2:#141419;      /* panels */
-      --ink-3:#1D1D24;      /* cards */
-      --text:#F6F7F9;       /* primary text */
-      --muted:#B9BFCC;      /* secondary text */
-      --ring:#FF8C8F;       /* focus ring */
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-      --radius:16px;
-    }*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0; background: radial-gradient(1200px 800px at 20% -10%, rgba(226,38,42,.25), transparent 60%),
-             radial-gradient(900px 600px at 120% 0%, rgba(255,214,10,.18), transparent 55%),
-             var(--ink);
-  color:var(--text);
-  font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
-  letter-spacing:.2px;
-}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unhinged — Love at First 🚩</title>
+<meta name="description" content="Unhinged: dating where we drop red flags first and see who still swipes right." />
+<meta name="theme-color" content="#da1a37" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0f0f12;--panel:#15151a;--muted:#9aa0a6;--text:#f5f7fa;--red:#da1a37;--red-2:#ff4d6d;--ring:rgba(218,26,55,.4)}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  header{position:sticky;top:0;z-index:30;background:rgba(15,15,18,.6);backdrop-filter:blur(8px);border-bottom:1px solid #22222b}
+  header .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800}
+  .logo-badge{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--red),var(--red-2));box-shadow:0 10px 24px rgba(218,26,55,.35)}
+  .logo-badge span{font-size:18px}
+  .mini{font-size:12px;opacity:.8;margin-top:-2px}
 
-/* Header */
-.site-header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(8px);
-  background:linear-gradient(180deg, rgba(12,12,15,.9), rgba(12,12,15,.65)); border-bottom:1px solid rgba(255,255,255,.06)}
-.bar{max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:14px 18px}
-.logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; letter-spacing:.6px}
-.logo .mark{display:inline-grid; place-items:center; width:36px; height:36px; border-radius:12px;
-  background:conic-gradient(from 210deg, var(--red), var(--red-dark)); box-shadow:0 6px 20px rgba(226,38,42,.45)}
-.logo .word{color:var(--text)}
-.tag{margin-left:auto; color:var(--yellow); font-weight:700; font-size:12px; letter-spacing:1px}
-
-/* Nav */
-.nav{display:flex; gap:10px; margin-left:16px}
-.btn{appearance:none; border:0; cursor:pointer; font-weight:700; padding:10px 14px; border-radius:12px;
-  background:var(--ink-3); color:var(--text); box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
-  transition:transform .12s ease, box-shadow .2s ease, background .2s}
-.btn:hover{transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.12)}
-.btn:active{transform:translateY(0)}
-.btn.primary{background:linear-gradient(180deg, var(--red), var(--red-dark)); box-shadow:0 10px 22px rgba(226,38,42,.45)}
-.btn.accent{background:linear-gradient(180deg, #ffdf3d, var(--yellow)); color:#301c00}
-
-/* Hero */
-.hero{max-width:1200px; margin:18px auto 0; padding:22px 18px}
-.hero-inner{position:relative; overflow:hidden; border-radius:calc(var(--radius) + 4px);
-  background:linear-gradient(140deg, rgba(226,38,42,.12), rgba(255,214,10,.08) 40%, rgba(255,255,255,.03) 70%);
-  border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
-.hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:center; padding:26px}
-.hero h1{font-size:clamp(26px, 4vw, 40px); margin:0 0 6px; letter-spacing:.4px}
-.hero p{margin:0; color:var(--muted)}
-.cta{display:flex; gap:10px; margin-top:16px}
-
-.poster{min-height:220px; border-radius:14px; overflow:hidden; position:relative; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center}
-.poster::after{content:""; position:absolute; inset:0; box-shadow:inset 0 -80px 120px rgba(0,0,0,.45)}
-
-/* Sections */
-.grid{max-width:1200px; margin:22px auto; padding:0 18px; display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
-.panel{background:var(--ink-2); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-.panel .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 14px 10px; border-bottom:1px solid rgba(255,255,255,.06)}
-.panel .hd h3{margin:0; font-size:16px}
-.panel .bd{padding:14px}
-
-/* Cards */
-.cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px}
-.card{background:var(--ink-3); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden; transition:transform .15s ease, box-shadow .2s ease}
-.card:hover{transform:translateY(-2px); box-shadow:0 16px 24px rgba(0,0,0,.35)}
-.card .ph{height:180px; background:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1520975922284-7b958d4f51f3?q=80&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center}
-.card .tx{padding:12px}
-.card h4{margin:0 0 4px}
-.meta{display:flex; gap:10px; color:var(--muted); font-size:12px}
-.pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:rgba(226,38,42,.18); color:#ffb0b2; border:1px solid rgba(226,38,42,.35); font-weight:700; font-size:12px}
-
-/* Footer */
-.site-footer{max-width:1200px; margin:12px auto 26px; padding:0 18px; color:var(--muted); display:flex; justify-content:space-between; align-items:center}
-.muted{color:var(--muted)}
-
-/* Responsive */
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
-
-/* Motion respect */
-@media (prefers-reduced-motion:reduce){.btn,.card{transition:none}}
-
-  </style>
+  /* HERO with couch image */
+  .hero{position:relative;min-height:88vh;display:grid;place-items:center;isolation:isolate;background:#0e0e12}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+    filter:grayscale(.2) contrast(1.05) brightness(.75);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:radial-gradient(60% 60% at 70% 30%, rgba(218,26,55,.22), rgba(0,0,0,.55) 45%, rgba(0,0,0,.7));
+  }
+  .hero-card{
+    width:min(100%, 980px);
+    border:1px solid #262630;border-radius:22px;padding:26px;
+    background:linear-gradient(180deg, rgba(25,25,34,.92), rgba(19,19,26,.92));
+    box-shadow:0 24px 60px rgba(0,0,0,.45)
+  }
+  .h-eyebrow{color:#ffd0d7;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+  .h-title{font-size:clamp(34px,5.2vw,64px);line-height:1.04;margin:6px 0 10px;font-weight:800}
+  .h-sub{color:var(--muted);font-size:clamp(15px,2.3vw,18px);margin:0 0 14px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .cta{padding:12px 18px;border-radius:14px;font-weight:700;background:linear-gradient(135deg,var(--red),var(--red-2));
+    box-shadow:0 12px 28px rgba(218,26,55,.35);border:0;color:#fff;cursor:pointer}
+  .ghost{border:1px solid #2a2a32;border-radius:12px;background:#141418;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer}
+  input[type=email],input[type=text],textarea,select{
+    background:#0f0f14;border:1px solid #2b2b36;border-radius:12px;padding:12px 14px;color:#fff;width:100%
+  }
+  .small{font-size:12.5px;color:#8b90a0}
+  .panel{background:linear-gradient(180deg,#121218,#0f0f14);border:1px solid #242432;border-radius:18px;padding:18px}
+  .rf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .rf{background:#121218;border:1px solid #242432;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+  .rf .flag{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--red),var(--red-2));display:grid;place-items:center;font-size:13px;flex:0 0 22px}
+  @media (max-width:920px){.rf-grid{grid-template-columns:1fr}}
+  footer{padding:36px 0 28px;color:#8b90a0;border-top:1px solid #22222b;margin-top:20px}
+  .toast{position:fixed;top:16px;right:16px;background:#121218;border:1px solid #2a2a32;border-radius:12px;padding:10px 14px;font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.35);display:none;z-index:50}
+  .confetti{position:fixed;inset:0;pointer-events:none;font-size:26px;animation:fall 1.2s ease-out forwards}
+  @keyframes fall{to{transform:translateY(80vh) rotate(360deg);opacity:0}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="bar">
-      <div class="logo">
-        <span class="mark">💘</span>
-        <span class="word">UNHINGED</span>
-      </div>
-      <span class="tag">DATE DIFFERENTLY</span>
-      <nav class="nav">
-        <button class="btn">Browse Matches</button>
-        <button class="btn">Messages</button>
-        <button class="btn">Profile</button>
-        <button class="btn accent">Settings</button>
-      </nav>
-    </div>
-  </header>  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-grid">
-        <div>
-          <h1>Meet boldly. Love a little unhinged.</h1>
-          <p>Smart matching, brutally honest profiles, and a Confession Wall that keeps it real. This is the dating app for people who don’t play safe.</p>
-          <div class="cta">
-            <button class="btn primary">Get Started</button>
-            <button class="btn">Explore Confessions</button>
-          </div>
-        </div>
-        <div class="poster" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap row">
+    <div class="logo">
+      <div class="logo-badge"><span>🚩</span></div>
+      <div>
+        <div>Unhinged</div>
+        <div class="mini">Love at First 🚩</div>
       </div>
     </div>
-  </section>  <main class="grid">
-    <section class="panel">
-      <div class="hd">
-        <h3>People Near You</h3>
-        <button class="btn">Filter</button>
-      </div>
-      <div class="bd">
-        <div class="cards">
-          <article class="card">
-            <div class="ph"></div>
-            <div class="tx">
-              <h4>Alex • 28</h4>
-              <div class="meta"><span>Music</span>·<span>Night Owl</span>·<span>Sarcasm</span></div>
-              <div style="margin-top:10px"><span class="pill">89% match</span></div>
-            </div>
-          </article>
-          <article class="card">
-            <div class="ph" style="background-image:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="tx">
-              <h4>Bailey • 27</h4>
-              <div class="meta"><span>Travel</span>·<span>Spicy Food</span>·<span>Gym</span></div>
-              <div style="margin-top:10px"><span class="pill">82% match</span></div>
-            </div>
-          </article>
-          <article class="card">
-            <div class="ph" style="background-image:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="tx">
-              <h4>Casey • 31</h4>
-              <div class="meta"><span>Film Buff</span>·<span>Board Games</span>·<span>Dogs</span></div>
-              <div style="margin-top:10px"><span class="pill">76% match</span></div>
-            </div>
-          </article>
-          <article class="card">
-            <div class="ph" style="background-image:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="tx">
-              <h4>Drew • 25</h4>
-              <div class="meta"><span>Runner</span>·<span>Podcasts</span>·<span>DIY</span></div>
-              <div style="margin-top:10px"><span class="pill">71% match</span></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section><section class="panel">
-  <div class="hd">
-    <h3>Confession Wall</h3>
-    <button class="btn">Post</button>
+    <nav class="row" aria-label="site">
+      <a class="ghost" href="#about">About</a>
+      <a class="ghost" href="#flags">Sample Flags</a>
+      <a class="ghost" href="#waitlist">Sign Up</a>
+    </nav>
   </div>
-  <div class="bd">
-    <div class="cards">
-      <article class="card">
-        <div class="tx">
-          <h4>“I judge people by their pizza toppings.”</h4>
-          <div class="meta">anonymous • 2h ago</div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="tx">
-          <h4>“I bring a tape measure to Ikea dates.”</h4>
-          <div class="meta">anonymous • 6h ago</div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="tx">
-          <h4>“My toxic trait is thinking I’m the main quest.”</h4>
-          <div class="meta">anonymous • 1d ago</div>
-        </div>
-      </article>
-    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-card wrap">
+    <div class="h-eyebrow">put the 🚩 on the table first</div>
+    <h1 class="h-title">Date smarter. Start with the worst parts.</h1>
+    <p class="h-sub">Sign up below. We’ll invite early testers first.</p>
+
+    <!-- TOP SIGN UP (dark inputs, Name + Email only) -->
+    <form id="quick-form" method="POST" action="YOUR_APPS_SCRIPT_URL_HERE"
+          onsubmit="return handleQuickSubmit(event)" class="row" style="margin-top:12px">
+      <input type="text"  name="name"  placeholder="Name"  aria-label="Name"  required style="flex:1;min-width:200px">
+      <input type="email" name="email" placeholder="Email" aria-label="Email" required style="flex:1;min-width:220px">
+      <button class="cta" type="submit" id="quick-cta">Sign Up</button>
+    </form>
+    <div class="small" style="margin-top:6px">No spam. One click to unsubscribe.</div>
   </div>
 </section>
 
-  </main>  <footer class="site-footer">
-    <small>© <span id="year"></span> Unhinged • Date Differently</small>
-    <small class="muted">Design locked · ready for wiring</small>
-  </footer>  <script>
-    // Set year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<!-- ABOUT -->
+<section id="about" class="wrap" style="padding:36px 24px 0">
+  <div class="panel">
+    <h3 style="margin:0 0 8px">What is Unhinged?</h3>
+    <p class="muted" style="margin:0">Dating without the audition. We lead with the stuff that usually shows up in month three. Post your 🚩 first, filter by tolerance, and match with people who can handle your truth. If they’re still in, that’s real.</p>
+  </div>
+</section>
 
-    // Micro-interaction: ripple on primary buttons
-    document.querySelectorAll('.btn').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        btn.style.transform='translateY(0) scale(.98)';
-        setTimeout(()=>btn.style.transform='', 120);
-      })
-    })
-  </script></body>
+<!-- SAMPLE RED FLAGS -->
+<section id="flags" class="wrap" style="padding:24px">
+  <h3 style="margin:0 0 10px">Sample Red Flags</h3>
+  <div class="rf-grid" id="rfGrid"></div>
+</section>
+
+<!-- FULL SIGN UP (bottom) -->
+<section id="waitlist" class="wrap" style="padding:0 24px 48px">
+  <div class="panel">
+    <h3 style="margin:0 0 6px">Sign Up</h3>
+    <p class="muted" style="margin:0 0 12px">Be first in when we open. Early testers are invited from this list.</p>
+    <form id="waitlist-form" method="POST" action="YOUR_APPS_SCRIPT_URL_HERE" onsubmit="return handleSubmit(event)">
+      <div class="row" style="gap:8px">
+        <input type="text"  name="name"  placeholder="Name"  aria-label="Name"  required style="flex:1">
+        <input type="email" name="email" placeholder="Email" aria-label="Email" required style="flex:1">
+      </div>
+      <div class="row" style="gap:8px;margin-top:12px">
+        <button class="cta" type="submit">Sign Up</button>
+        <button type="button" class="ghost" onclick="copyShare()">Copy Share Link</button>
+        <span id="copyOk" class="small"></span>
+      </div>
+      <div id="form-status" class="small" role="status" style="margin-top:8px"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap small">© <span id="year"></span> Unhinged. Built by UnfavorableJosh. <span class="muted">Red layout, zero placeholders.</span></div>
+</footer>
+
+<div class="toast" id="toast">You’re in ✅</div>
+
+<script>
+  const $ = (q)=>document.querySelector(q);
+
+  // SAMPLE FLAGS
+  const rfList = [
+    ["Texts back late","Not playing games — just chronically overbooked."],
+    ["Gym rat","Yes, I’ll pick leg day over brunch. Sometimes."],
+    ["Dog > People","You will be ranked #2 for a while."],
+    ["Dark humor","If you’re easily offended, I’m not your person."],
+    ["Phone on DND","It’s not you. It’s my peace."],
+    ["Early bedtime","If we’re out past 10, it’s love."],
+    ["Chronically curious","I will ask follow-ups like it’s my job."]
+  ];
+  function renderRFGrid(){
+    const grid = document.getElementById('rfGrid');
+    grid.innerHTML = '';
+    rfList.forEach(([t,s])=>{
+      const div = document.createElement('div');
+      div.className = 'rf';
+      div.innerHTML = `<div class="flag">🚩</div><div><strong>${t}</strong><div class="muted small">${s}</div></div>`;
+      grid.appendChild(div);
+    });
+  }
+
+  // Toast + copy
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.display = 'block';
+    setTimeout(()=>t.style.display='none', 2000);
+  }
+  function copyShare(){
+    navigator.clipboard.writeText(location.href).then(()=>{
+      const el = document.getElementById('copyOk');
+      if(el){ el.textContent = 'Link copied.'; setTimeout(()=>el.textContent='', 2000); }
+    });
+  }
+
+  // Submit handlers (Apps Script webhook)
+  async function handleQuickSubmit(e){
+    e.preventDefault();
+    const btn = document.getElementById('quick-cta');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try{
+      const res = await fetch(e.target.action, { method:'POST', body:new FormData(e.target) });
+      if(res.ok){
+        e.target.reset();
+        btn.textContent = 'You’re in ✅';
+        showToast('You’re in ✅');
+      } else { btn.disabled = false; btn.textContent = 'Sign Up'; }
+    }catch{ btn.disabled = false; btn.textContent = 'Sign Up'; }
+    return false;
+  }
+
+  async function handleSubmit(e){
+    e.preventDefault();
+    const status = document.getElementById('form-status');
+    status.textContent = 'Sending…';
+    try{
+      const res = await fetch(e.target.action, { method:'POST', body:new FormData(e.target) });
+      if(res.ok){
+        e.target.reset();
+        status.textContent = 'You’re on the list. See you in beta.';
+        showToast('You’re on the list ✅');
+      } else { status.textContent = 'Something went wrong. Try again in a minute.'; }
+    }catch{ status.textContent = 'Network hiccup. Try again.'; }
+    return false;
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  renderRFGrid();
+</script>
+</body>
 </html>
