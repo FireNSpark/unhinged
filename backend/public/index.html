@@ -1,215 +1,133 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Unhinged — Love at First 🚩</title>
-<meta name="description" content="Unhinged: dating where we drop red flags first and see who still swipes right." />
-<meta name="theme-color" content="#da1a37" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root{--bg:#0f0f12;--panel:#15151a;--muted:#9aa0a6;--text:#f5f7fa;--red:#da1a37;--red-2:#ff4d6d;--ring:rgba(218,26,55,.4)}
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1100px;margin:0 auto;padding:24px}
-  header{position:sticky;top:0;z-index:30;background:rgba(15,15,18,.6);backdrop-filter:blur(8px);border-bottom:1px solid #22222b}
-  header .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800}
-  .logo-badge{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-    background:linear-gradient(135deg,var(--red),var(--red-2));box-shadow:0 10px 24px rgba(218,26,55,.35)}
-  .logo-badge span{font-size:18px}
-  .mini{font-size:12px;opacity:.8;margin-top:-2px}
-
-  /* HERO with couch image */
-  .hero{position:relative;min-height:88vh;display:grid;place-items:center;isolation:isolate;background:#0e0e12}
-  .hero::before{
-    content:"";position:absolute;inset:0;z-index:-2;
-    background:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
-    filter:grayscale(.2) contrast(1.05) brightness(.75);
-  }
-  .hero::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background:radial-gradient(60% 60% at 70% 30%, rgba(218,26,55,.22), rgba(0,0,0,.55) 45%, rgba(0,0,0,.7));
-  }
-  .hero-card{
-    width:min(100%, 980px);
-    border:1px solid #262630;border-radius:22px;padding:26px;
-    background:linear-gradient(180deg, rgba(25,25,34,.92), rgba(19,19,26,.92));
-    box-shadow:0 24px 60px rgba(0,0,0,.45)
-  }
-  .h-eyebrow{color:#ffd0d7;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:12px}
-  .h-title{font-size:clamp(34px,5.2vw,64px);line-height:1.04;margin:6px 0 10px;font-weight:800}
-  .h-sub{color:var(--muted);font-size:clamp(15px,2.3vw,18px);margin:0 0 14px}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .cta{padding:12px 18px;border-radius:14px;font-weight:700;background:linear-gradient(135deg,var(--red),var(--red-2));
-    box-shadow:0 12px 28px rgba(218,26,55,.35);border:0;color:#fff;cursor:pointer}
-  .ghost{border:1px solid #2a2a32;border-radius:12px;background:#141418;color:#fff;padding:10px 14px;font-weight:600;cursor:pointer}
-  input[type=email],input[type=text],textarea,select{
-    background:#0f0f14;border:1px solid #2b2b36;border-radius:12px;padding:12px 14px;color:#fff;width:100%
-  }
-  .small{font-size:12.5px;color:#8b90a0}
-  .panel{background:linear-gradient(180deg,#121218,#0f0f14);border:1px solid #242432;border-radius:18px;padding:18px}
-  .rf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .rf{background:#121218;border:1px solid #242432;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start}
-  .rf .flag{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--red),var(--red-2));display:grid;place-items:center;font-size:13px;flex:0 0 22px}
-  @media (max-width:920px){.rf-grid{grid-template-columns:1fr}}
-  footer{padding:36px 0 28px;color:#8b90a0;border-top:1px solid #22222b;margin-top:20px}
-  .toast{position:fixed;top:16px;right:16px;background:#121218;border:1px solid #2a2a32;border-radius:12px;padding:10px 14px;font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.35);display:none;z-index:50}
-  .confetti{position:fixed;inset:0;pointer-events:none;font-size:26px;animation:fall 1.2s ease-out forwards}
-  @keyframes fall{to{transform:translateY(80vh) rotate(360deg);opacity:0}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Unhinged — Radical Honesty Dating</title>
+  <meta name="description" content="Post your red flags. Find your people." />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-
-<header>
-  <div class="wrap row">
-    <div class="logo">
-      <div class="logo-badge"><span>🚩</span></div>
-      <div>
-        <div>Unhinged</div>
-        <div class="mini">Love at First 🚩</div>
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <div class="logo">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Unhinged</span>
+      </div>
+      <nav class="nav__links">
+        <a href="#how">How it works</a>
+        <a href="#flags">Red Flag Cards</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn ghost" href="#join">Sign in</a>
+        <a class="btn primary" href="#join">Get early access</a>
       </div>
     </div>
-    <nav class="row" aria-label="site">
-      <a class="ghost" href="#about">About</a>
-      <a class="ghost" href="#flags">Sample Flags</a>
-      <a class="ghost" href="#waitlist">Sign Up</a>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-card wrap">
-    <div class="h-eyebrow">put the 🚩 on the table first</div>
-    <h1 class="h-title">Date smarter. Start with the worst parts.</h1>
-    <p class="h-sub">Sign up below. We’ll invite early testers first.</p>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <span class="badge">Beta Access</span>
+          <h1>Dating for people who admit they’re a little <span class="accent">unhinged</span>.</h1>
+          <p class="muted">Drop your dealbreakers, flex your flaws, and match with humans who can handle the smoke. No fairy tales—just radical honesty.</p>
 
-    <!-- TOP SIGN UP (dark inputs, Name + Email only) -->
-    <form id="quick-form" method="POST" action="YOUR_APPS_SCRIPT_URL_HERE"
-          onsubmit="return handleQuickSubmit(event)" class="row" style="margin-top:12px">
-      <input type="text"  name="name"  placeholder="Name"  aria-label="Name"  required style="flex:1;min-width:200px">
-      <input type="email" name="email" placeholder="Email" aria-label="Email" required style="flex:1;min-width:220px">
-      <button class="cta" type="submit" id="quick-cta">Sign Up</button>
-    </form>
-    <div class="small" style="margin-top:6px">No spam. One click to unsubscribe.</div>
-  </div>
-</section>
+          <form id="waitlist" class="form">
+            <input id="email" type="email" placeholder="email@you.com" required />
+            <button class="btn primary" type="submit" id="joinBtn">Join waitlist</button>
+          </form>
+          <p id="formMsg" class="form__msg" role="status" aria-live="polite"></p>
 
-<!-- ABOUT -->
-<section id="about" class="wrap" style="padding:36px 24px 0">
-  <div class="panel">
-    <h3 style="margin:0 0 8px">What is Unhinged?</h3>
-    <p class="muted" style="margin:0">Dating without the audition. We lead with the stuff that usually shows up in month three. Post your 🚩 first, filter by tolerance, and match with people who can handle your truth. If they’re still in, that’s real.</p>
-  </div>
-</section>
+          <div class="hero__features">
+            <span>🚩 Brutally honest profiles</span>
+            <span>🧪 Red‑flag compatibility</span>
+            <span>🔒 No DMs until mutual match</span>
+          </div>
+        </div>
 
-<!-- SAMPLE RED FLAGS -->
-<section id="flags" class="wrap" style="padding:24px">
-  <h3 style="margin:0 0 10px">Sample Red Flags</h3>
-  <div class="rf-grid" id="rfGrid"></div>
-</section>
+        <!-- Teaser cards -->
+        <div class="cards" id="flags">
+          <article class="card">
+            <div class="card__top">
+              <strong>Raven, 29</strong>
+              <span class="chip">Self‑aware menace</span>
+            </div>
+            <p>Keeps score like it’s a sport. Will absolutely steal your hoodie and your playlist.</p>
+            <div class="card__actions">
+              <button class="btn ghost">Pass</button>
+              <button class="btn primary">I can handle it</button>
+            </div>
+          </article>
 
-<!-- FULL SIGN UP (bottom) -->
-<section id="waitlist" class="wrap" style="padding:0 24px 48px">
-  <div class="panel">
-    <h3 style="margin:0 0 6px">Sign Up</h3>
-    <p class="muted" style="margin:0 0 12px">Be first in when we open. Early testers are invited from this list.</p>
-    <form id="waitlist-form" method="POST" action="YOUR_APPS_SCRIPT_URL_HERE" onsubmit="return handleSubmit(event)">
-      <div class="row" style="gap:8px">
-        <input type="text"  name="name"  placeholder="Name"  aria-label="Name"  required style="flex:1">
-        <input type="email" name="email" placeholder="Email" aria-label="Email" required style="flex:1">
+          <article class="card">
+            <div class="card__top">
+              <strong>Theo, 34</strong>
+              <span class="chip">Walking contradiction</span>
+            </div>
+            <p>Therapy on Thursdays, chaos on Fridays. Will text back in essays or vanish for a week.</p>
+            <div class="card__actions">
+              <button class="btn ghost">Pass</button>
+              <button class="btn primary">Queue the drama</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__top">
+              <strong>Maya, 26</strong>
+              <span class="chip">Red flag speedrun</span>
+            </div>
+            <p>Will fall in love at brunch and forget your name by dinner. Allergic to labels.</p>
+            <div class="card__actions">
+              <button class="btn ghost">Pass</button>
+              <button class="btn primary">Challenge accepted</button>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="row" style="gap:8px;margin-top:12px">
-        <button class="cta" type="submit">Sign Up</button>
-        <button type="button" class="ghost" onclick="copyShare()">Copy Share Link</button>
-        <span id="copyOk" class="small"></span>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="section">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <div class="cols">
+          <div class="card small">
+            <h3>1) Post your red flags</h3>
+            <p class="muted">Own your chaos. List your non‑negotiables and toxic traits—before someone else does.</p>
+          </div>
+          <div class="card small">
+            <h3>2) Match by honesty</h3>
+            <p class="muted">We match people whose dealbreakers strangely… fit. It’s crazy until it works.</p>
+          </div>
+          <div class="card small">
+            <h3>3) Dates, not delusion</h3>
+            <p class="muted">No love‑bombing. No ghosting. Opt‑in chaos with consent and calendar invites.</p>
+          </div>
+        </div>
       </div>
-      <div id="form-status" class="small" role="status" style="margin-top:8px"></div>
-    </form>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="wrap small">© <span id="year"></span> Unhinged. Built by UnfavorableJosh. <span class="muted">Red layout, zero placeholders.</span></div>
-</footer>
+    <!-- FAQ placeholder -->
+    <section id="faq" class="section">
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <details class="faq"><summary>Is this a real thing?</summary><p>Yes. Launching soon. Get on the list.</p></details>
+        <details class="faq"><summary>Do I need photos?</summary><p>Not yet. Start with text‑only flags. Photos later.</p></details>
+        <details class="faq"><summary>When does matching open?</summary><p>We’ll email you by region as we unlock cities.</p></details>
+      </div>
+    </section>
+  </main>
 
-<div class="toast" id="toast">You’re in ✅</div>
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> Unhinged — built by degenerates with standards.</p>
+    </div>
+  </footer>
 
-<script>
-  const $ = (q)=>document.querySelector(q);
-
-  // SAMPLE FLAGS
-  const rfList = [
-    ["Texts back late","Not playing games — just chronically overbooked."],
-    ["Gym rat","Yes, I’ll pick leg day over brunch. Sometimes."],
-    ["Dog > People","You will be ranked #2 for a while."],
-    ["Dark humor","If you’re easily offended, I’m not your person."],
-    ["Phone on DND","It’s not you. It’s my peace."],
-    ["Early bedtime","If we’re out past 10, it’s love."],
-    ["Chronically curious","I will ask follow-ups like it’s my job."]
-  ];
-  function renderRFGrid(){
-    const grid = document.getElementById('rfGrid');
-    grid.innerHTML = '';
-    rfList.forEach(([t,s])=>{
-      const div = document.createElement('div');
-      div.className = 'rf';
-      div.innerHTML = `<div class="flag">🚩</div><div><strong>${t}</strong><div class="muted small">${s}</div></div>`;
-      grid.appendChild(div);
-    });
-  }
-
-  // Toast + copy
-  function showToast(msg){
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.display = 'block';
-    setTimeout(()=>t.style.display='none', 2000);
-  }
-  function copyShare(){
-    navigator.clipboard.writeText(location.href).then(()=>{
-      const el = document.getElementById('copyOk');
-      if(el){ el.textContent = 'Link copied.'; setTimeout(()=>el.textContent='', 2000); }
-    });
-  }
-
-  // Submit handlers (Apps Script webhook)
-  async function handleQuickSubmit(e){
-    e.preventDefault();
-    const btn = document.getElementById('quick-cta');
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try{
-      const res = await fetch(e.target.action, { method:'POST', body:new FormData(e.target) });
-      if(res.ok){
-        e.target.reset();
-        btn.textContent = 'You’re in ✅';
-        showToast('You’re in ✅');
-      } else { btn.disabled = false; btn.textContent = 'Sign Up'; }
-    }catch{ btn.disabled = false; btn.textContent = 'Sign Up'; }
-    return false;
-  }
-
-  async function handleSubmit(e){
-    e.preventDefault();
-    const status = document.getElementById('form-status');
-    status.textContent = 'Sending…';
-    try{
-      const res = await fetch(e.target.action, { method:'POST', body:new FormData(e.target) });
-      if(res.ok){
-        e.target.reset();
-        status.textContent = 'You’re on the list. See you in beta.';
-        showToast('You’re on the list ✅');
-      } else { status.textContent = 'Something went wrong. Try again in a minute.'; }
-    }catch{ status.textContent = 'Network hiccup. Try again.'; }
-    return false;
-  }
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-  renderRFGrid();
-</script>
+  <script src="./script.js" defer></script>
 </body>
 </html>
