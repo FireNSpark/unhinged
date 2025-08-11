@@ -1,13 +1,64 @@
-
+:root{
+  --ink:#0b0b0f; --rose:#ff2e63; --acid:#9ef01a; --muted:#a3a3a3; --ring:rgba(255,255,255,.08);
+}
 *{box-sizing:border-box}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;margin:0;background:#0b0c10;color:#eaeef2}
-header{background:#111827;border-bottom:1px solid #1f2937;padding:16px 20px}
-h1{margin:0;font-size:22px}
-nav{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px}
-button{padding:8px 12px;border-radius:8px;border:1px solid #374151;background:#1f2937;color:#eaeef2;cursor:pointer}
-button:disabled{opacity:.4;cursor:not-allowed}
-main{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px}
-section{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:14px}
-ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-li{padding:6px 8px;border:1px solid #232b3a;border-radius:8px;background:#0f1623}
-pre{white-space:pre-wrap;word-break:break-word;min-height:220px}
+html,body{height:100%}
+body{
+  margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--ink); color:#fff; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:1120px; margin:0 auto; padding:0 16px}
+.muted{color:var(--muted)}
+
+.nav{position:sticky; top:0; z-index:20; backdrop-filter:saturate(1.2) blur(8px); background:rgba(11,11,15,.7); border-bottom:1px solid var(--ring)}
+.nav__inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+.logo{display:flex; align-items:center; gap:8px; font-weight:700}
+.dot{width:8px; height:8px; border-radius:50%; background:var(--rose); animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+.nav__links{display:none; gap:20px}
+.nav__links a{color:#cfcfcf; text-decoration:none}
+.nav__links a:hover{color:#fff}
+.nav__actions{display:flex; gap:8px}
+@media (min-width:768px){.nav__links{display:flex}}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 16px; border-radius:14px;
+  font-weight:600; font-size:14px; border:1px solid transparent; box-shadow:0 8px 18px rgba(0,0,0,.4); transition:.15s transform}
+.btn:active{transform:scale(.98)}
+.primary{background:var(--rose); color:#fff}
+.ghost{background:rgba(255,255,255,.06); border-color:var(--ring); color:#fff}
+
+.grid-bg{position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px); background-size:18px 18px; pointer-events:none}
+.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--ring)}
+.hero__inner{display:grid; gap:28px; padding:72px 16px 40px}
+@media (min-width:900px){.hero__inner{grid-template-columns:1.1fr .9fr; align-items:center; padding:96px 16px 56px}}
+.hero h1{font-size:36px; line-height:1.1; margin:12px 0 8px}
+@media (min-width:900px){.hero h1{font-size:54px}}
+.accent{color:var(--rose)}
+.badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(158,240,26,.16); color:var(--acid); font-weight:700; font-size:12px}
+
+.form{display:flex; gap:8px; margin:14px 0 6px; max-width:460px}
+.form input{flex:1; padding:12px 14px; border-radius:12px; border:1px solid var(--ring); background:rgba(255,255,255,.06); color:#fff; outline:none}
+.form input::placeholder{color:#bdbdbd}
+.form__msg{font-size:13px; min-height:20px}
+.form__msg.ok{color:var(--acid)}
+.form__msg.err{color:var(--rose)}
+
+.hero__features{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; color:#cfcfcf; font-size:13px}
+
+.cards{display:grid; gap:14px}
+@media (min-width:700px){.cards{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.06); border:1px solid var(--ring); border-radius:20px; padding:16px; box-shadow:0 12px 28px rgba(0,0,0,.35); backdrop-filter:blur(6px)}
+.card.small{height:100%}
+.card__top{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+.chip{font-size:12px; padding:4px 10px; border-radius:999px; background:rgba(158,240,26,.16); color:var(--acid); font-weight:700}
+.card__actions{display:flex; gap:8px; margin-top:12px}
+
+.section{padding:56px 0; border-top:1px solid var(--ring)}
+.cols{display:grid; gap:14px}
+@media (min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}}
+h2{margin:0 0 14px}
+
+.faq{background:rgba(255,255,255,.04); border:1px solid var(--ring); border-radius:14px; padding:10px 14px; margin:10px 0}
+.faq summary{cursor:pointer; font-weight:600}
+
+.footer{border-top:1px solid var(--ring); padding:24px 0; text-align:center; color:#cfcfcf}
