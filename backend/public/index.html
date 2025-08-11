@@ -1,148 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unhinged Dating</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unhinged · Dating</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      background-color: #111;
-      color: #fff;
-    }
-    header {
-      background-color: #b30000;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background-color: #222;
-      padding: 10px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #ff4d4d;
-    }
-    .hero {
-      background: url('https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #fff;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    }
-    .hero button {
-      background-color: #b30000;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: white;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    .hero button:hover {
-      background-color: #ff4d4d;
-    }
-    .profiles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-    .card {
-      background-color: #222;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      text-align: center;
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .card h3 {
-      margin: 15px 0 5px;
-    }
-    .card p {
-      font-size: 0.9rem;
-      color: #aaa;
-      margin: 0 0 15px;
-    }
-    footer {
-      background-color: #b30000;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-    }
-    footer p {
-      margin: 0;
-      font-size: 0.85rem;
-    }
+    :root{
+      /* Brand */
+      --red:#E2262A;        /* primary red */
+      --red-dark:#B11C1F;   /* darker red */
+      --yellow:#FFD60A;     /* accent */
+      --ink:#0C0C0F;        /* page bg */
+      --ink-2:#141419;      /* panels */
+      --ink-3:#1D1D24;      /* cards */
+      --text:#F6F7F9;       /* primary text */
+      --muted:#B9BFCC;      /* secondary text */
+      --ring:#FF8C8F;       /* focus ring */
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+    }*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background: radial-gradient(1200px 800px at 20% -10%, rgba(226,38,42,.25), transparent 60%),
+             radial-gradient(900px 600px at 120% 0%, rgba(255,214,10,.18), transparent 55%),
+             var(--ink);
+  color:var(--text);
+  font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+  letter-spacing:.2px;
+}
+
+/* Header */
+.site-header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(8px);
+  background:linear-gradient(180deg, rgba(12,12,15,.9), rgba(12,12,15,.65)); border-bottom:1px solid rgba(255,255,255,.06)}
+.bar{max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:14px 18px}
+.logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; letter-spacing:.6px}
+.logo .mark{display:inline-grid; place-items:center; width:36px; height:36px; border-radius:12px;
+  background:conic-gradient(from 210deg, var(--red), var(--red-dark)); box-shadow:0 6px 20px rgba(226,38,42,.45)}
+.logo .word{color:var(--text)}
+.tag{margin-left:auto; color:var(--yellow); font-weight:700; font-size:12px; letter-spacing:1px}
+
+/* Nav */
+.nav{display:flex; gap:10px; margin-left:16px}
+.btn{appearance:none; border:0; cursor:pointer; font-weight:700; padding:10px 14px; border-radius:12px;
+  background:var(--ink-3); color:var(--text); box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  transition:transform .12s ease, box-shadow .2s ease, background .2s}
+.btn:hover{transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.12)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:linear-gradient(180deg, var(--red), var(--red-dark)); box-shadow:0 10px 22px rgba(226,38,42,.45)}
+.btn.accent{background:linear-gradient(180deg, #ffdf3d, var(--yellow)); color:#301c00}
+
+/* Hero */
+.hero{max-width:1200px; margin:18px auto 0; padding:22px 18px}
+.hero-inner{position:relative; overflow:hidden; border-radius:calc(var(--radius) + 4px);
+  background:linear-gradient(140deg, rgba(226,38,42,.12), rgba(255,214,10,.08) 40%, rgba(255,255,255,.03) 70%);
+  border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
+.hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:center; padding:26px}
+.hero h1{font-size:clamp(26px, 4vw, 40px); margin:0 0 6px; letter-spacing:.4px}
+.hero p{margin:0; color:var(--muted)}
+.cta{display:flex; gap:10px; margin-top:16px}
+
+.poster{min-height:220px; border-radius:14px; overflow:hidden; position:relative; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center}
+.poster::after{content:""; position:absolute; inset:0; box-shadow:inset 0 -80px 120px rgba(0,0,0,.45)}
+
+/* Sections */
+.grid{max-width:1200px; margin:22px auto; padding:0 18px; display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
+.panel{background:var(--ink-2); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+.panel .hd{display:flex; align-items:center; justify-content:space-between; padding:14px 14px 10px; border-bottom:1px solid rgba(255,255,255,.06)}
+.panel .hd h3{margin:0; font-size:16px}
+.panel .bd{padding:14px}
+
+/* Cards */
+.cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px}
+.card{background:var(--ink-3); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden; transition:transform .15s ease, box-shadow .2s ease}
+.card:hover{transform:translateY(-2px); box-shadow:0 16px 24px rgba(0,0,0,.35)}
+.card .ph{height:180px; background:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1520975922284-7b958d4f51f3?q=80&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center}
+.card .tx{padding:12px}
+.card h4{margin:0 0 4px}
+.meta{display:flex; gap:10px; color:var(--muted); font-size:12px}
+.pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:rgba(226,38,42,.18); color:#ffb0b2; border:1px solid rgba(226,38,42,.35); font-weight:700; font-size:12px}
+
+/* Footer */
+.site-footer{max-width:1200px; margin:12px auto 26px; padding:0 18px; color:var(--muted); display:flex; justify-content:space-between; align-items:center}
+.muted{color:var(--muted)}
+
+/* Responsive */
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+
+/* Motion respect */
+@media (prefers-reduced-motion:reduce){.btn,.card{transition:none}}
+
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>🔥 Unhinged Dating 🔥</h1>
-  </header>
-
-  <nav>
-    <a href="#">Browse</a>
-    <a href="#">Messages</a>
-    <a href="#">Profile</a>
-    <a href="#">Login</a>
-    <a href="#">Sign Up</a>
-  </nav>
-
-  <section class="hero">
-    <h2>Where love is a little... dangerous 😉</h2>
-    <button>Join Now</button>
-  </section>
-
-  <section class="profiles">
-    <div class="card">
-      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Profile">
-      <h3>Alice, 29</h3>
-      <p>Adrenaline junkie, loves late-night tacos 🌮</p>
+  <header class="site-header">
+    <div class="bar">
+      <div class="logo">
+        <span class="mark">💘</span>
+        <span class="word">UNHINGED</span>
+      </div>
+      <span class="tag">DATE DIFFERENTLY</span>
+      <nav class="nav">
+        <button class="btn">Browse Matches</button>
+        <button class="btn">Messages</button>
+        <button class="btn">Profile</button>
+        <button class="btn accent">Settings</button>
+      </nav>
     </div>
-    <div class="card">
-      <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Profile">
-      <h3>Bob, 34</h3>
-      <p>Thrill seeker, sarcastic by nature 😏</p>
+  </header>  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <div>
+          <h1>Meet boldly. Love a little unhinged.</h1>
+          <p>Smart matching, brutally honest profiles, and a Confession Wall that keeps it real. This is the dating app for people who don’t play safe.</p>
+          <div class="cta">
+            <button class="btn primary">Get Started</button>
+            <button class="btn">Explore Confessions</button>
+          </div>
+        </div>
+        <div class="poster" aria-hidden="true"></div>
+      </div>
     </div>
-    <div class="card">
-      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profile">
-      <h3>Charlie, 27</h3>
-      <p>Gamer girl, loves dark humor 🎮</p>
+  </section>  <main class="grid">
+    <section class="panel">
+      <div class="hd">
+        <h3>People Near You</h3>
+        <button class="btn">Filter</button>
+      </div>
+      <div class="bd">
+        <div class="cards">
+          <article class="card">
+            <div class="ph"></div>
+            <div class="tx">
+              <h4>Alex • 28</h4>
+              <div class="meta"><span>Music</span>·<span>Night Owl</span>·<span>Sarcasm</span></div>
+              <div style="margin-top:10px"><span class="pill">89% match</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="ph" style="background-image:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="tx">
+              <h4>Bailey • 27</h4>
+              <div class="meta"><span>Travel</span>·<span>Spicy Food</span>·<span>Gym</span></div>
+              <div style="margin-top:10px"><span class="pill">82% match</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="ph" style="background-image:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="tx">
+              <h4>Casey • 31</h4>
+              <div class="meta"><span>Film Buff</span>·<span>Board Games</span>·<span>Dogs</span></div>
+              <div style="margin-top:10px"><span class="pill">76% match</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="ph" style="background-image:linear-gradient(180deg, rgba(226,38,42,.25), rgba(255,214,10,.12)), url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="tx">
+              <h4>Drew • 25</h4>
+              <div class="meta"><span>Runner</span>·<span>Podcasts</span>·<span>DIY</span></div>
+              <div style="margin-top:10px"><span class="pill">71% match</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section><section class="panel">
+  <div class="hd">
+    <h3>Confession Wall</h3>
+    <button class="btn">Post</button>
+  </div>
+  <div class="bd">
+    <div class="cards">
+      <article class="card">
+        <div class="tx">
+          <h4>“I judge people by their pizza toppings.”</h4>
+          <div class="meta">anonymous • 2h ago</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="tx">
+          <h4>“I bring a tape measure to Ikea dates.”</h4>
+          <div class="meta">anonymous • 6h ago</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="tx">
+          <h4>“My toxic trait is thinking I’m the main quest.”</h4>
+          <div class="meta">anonymous • 1d ago</div>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2025 Unhinged Dating — All rights reserved.</p>
-  </footer>
+  </main>  <footer class="site-footer">
+    <small>© <span id="year"></span> Unhinged • Date Differently</small>
+    <small class="muted">Design locked · ready for wiring</small>
+  </footer>  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-</body>
+    // Micro-interaction: ripple on primary buttons
+    document.querySelectorAll('.btn').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        btn.style.transform='translateY(0) scale(.98)';
+        setTimeout(()=>btn.style.transform='', 120);
+      })
+    })
+  </script></body>
 </html>
